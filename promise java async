@@ -59,3 +59,48 @@ your pictures is ${pic}
 }
 
 UserDisplay()
+
+
+const token = ~~[Math.random() * 12345678]
+
+const pictures = ['jpg.1','jpg,2', 'jpg.3']
+
+function login(username, callback) {
+    console.log('proces ... get token')
+    setTimeout (() =>  { 
+        callback({token, username})
+    }, 300)
+
+}
+
+function getUser(token,callback) {
+    if(token) 
+        console.log('process get api key... ')
+        setTimeout(() => {
+    callback({apiKey: 'xkey123'})
+    },300)
+}
+
+
+function getPictures (apiKey ,callback) {
+    if (apiKey)
+    console.log('processing get Picture...')
+    setTimeout(() => {
+        callback({pic : pictures})
+    }, 1500)
+
+}
+
+
+login ('wahyudin', function (response) {
+    const {token} = response
+     getUser(token, function(response){
+        const{apiKey} = response 
+    getPictures (apiKey, function(response) {
+        const {pic} = response
+        console.log(pic)
+
+         })
+     })
+
+})
